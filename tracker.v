@@ -8,7 +8,7 @@ reg [31:0] shift_register;
 reg [30:0] steps_in_one_sec_counter;
 reg [30:0] up_to_nine_sec_counter;
 reg [3:0] steps_over_32_per_sec_counter;
-wire one_Hz_clk_SP, adder_sel, adder_in, clk_sel, first_nine_sec_pulse;
+wire one_Hz_clk_SP, adder_sel, adder_in, clk_sel, first_nine_sec_pulse; 
 wire [4:0] step_counter_bcd3, step_counter_bcd2, step_counter_bcd1, step_counter_bcd0;
 wire [4:0] distance_covered_bcd3, distance_covered_bcd2, distance_covered_bcd1, distance_covered_bcd0; 
 
