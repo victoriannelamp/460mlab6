@@ -4,10 +4,10 @@ input [1:0] mode;
 output pulse, clk_1hz; 
 
 reg [31:0] clk_var, hybrid;  
-reg [7:0] r_reg, r_reg_1hz;
-wire [7:0] r_nxt, r_nxt_1hz;
+reg [31:0] r_reg, r_reg_1hz;
+wire [31:0] r_nxt, r_nxt_1hz;
 reg clk_track, clk_track_1hz;
-reg [31:0] hybrid_array [8:0]; 
+reg [31:0] hybrid_array [10:0]; 
 reg [31:0] hybrid_cnt; 
 reg [31:0] hybrid_loop; 
 reg [7:0] i; 
@@ -26,8 +26,8 @@ hybrid_array[6] <= 64'd2500000; //20hz
 hybrid_array[7] <= 64'd1666666; //30hz  
 hybrid_array[8] <= 64'd1562500; //32hz 
 hybrid <=0; 
-hybrid_cnt<=0; 
-hybrid_loop<= 0; 
+hybrid_cnt <=0; 
+hybrid_loop <= 0; 
 i <= 0; 
 hybrid_sig <= 0; 
 
@@ -90,7 +90,7 @@ else if(hybrid_cnt < 80) begin hybrid <= 64'd1470588; end //34hz
 else if(hybrid_cnt < 144) begin hybrid <= 64'd403225; end //124hz 
 else hybrid <= 0; 
 
-for(i = 0 ; i < 10; i = i + 1)
+for(i = 0 ; i < 8'd9; i = i + 1)
 begin 
 hybrid_loop <= hybrid_array[i];
 end 
