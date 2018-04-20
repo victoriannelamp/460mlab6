@@ -4,11 +4,6 @@ reg step_clk, one_Hz_clk, sys_clk, reset;
 wire si, bcd3, bcd2, bcd1, bcd0;
 
 initial begin
-sys_clk = 1'b0;
-forever #1 sys_clk = ~sys_clk;
-end
-
-initial begin
 step_clk = 1'b0;
 forever #5 step_clk = ~step_clk;
 end

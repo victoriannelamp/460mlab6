@@ -12,7 +12,7 @@ wire one_Hz_clk_SP, adder_sel, adder_in, clk_sel, first_nine_sec_pulse;
 wire [4:0] step_counter_bcd3, step_counter_bcd2, step_counter_bcd1, step_counter_bcd0;
 wire [4:0] distance_covered_bcd3, distance_covered_bcd2, distance_covered_bcd1, distance_covered_bcd0; 
 
-/*******Part 1: Total Step Count***********/
+//Part 1: Total Step Count
 always @(posedge step_clk or posedge reset) 
 begin
 	if(reset == 1'b1) step_counter <= 31'b0;
@@ -25,9 +25,14 @@ assign step_counter_bcd1 = (step_counter > 9999) ? 5'd9 : ((step_counter/10) % 1
 assign step_counter_bcd2 = (step_counter > 9999) ? 5'd9 : ((step_counter/100) % 10);
 assign step_counter_bcd3 = (step_counter > 9999) ? 5'd9 : ((step_counter/1000) % 10);
 
+assign bcd3 = step_counter_bcd3;
+assign bcd2 = step_counter_bcd2;
+assign bcd1 = step_counter_bcd1;
+assign bcd0 = step_counter_bcd0;
 
 
-/***********Part 2: Distance Covered**********/
+/*
+//Part 2: Distance Covered
 always @(posedge step_clk)
 begin
 	shift_register <= {11'b0, step_counter[30:10]}; //right shifts the step_counter by 11 bits	
@@ -42,7 +47,7 @@ assign distance_covered_bcd1 = 5'h1F; //TODO: make sure the seven seg display mo
 assign distance_covered_bcd0 = (shift_register[0] == 1'b1) ? 5'd5 : 5'd0;
 
 
-/**********Part 3: Steps Over 32/sec ***********/
+//Part 3: Steps Over 32/sec 
 
 single_pulse single_pulser(sys_clk, one_Hz_clk, one_Hz_clk_SP);
 
@@ -68,15 +73,16 @@ end
 assign adder_sel = (steps_in_one_sec_counter > 32) ? 1'b1 : 1'b0;
 assign clk_sel = (up_to_nine_sec_counter < 9) ? 1'b1 : 1'b0;
 assign adder_in = adder_sel ? 1'b1 : 1'b0;
-assign first_nine_sec_pulse = clk_sel ? one_Hz_clk_SP : 1'b0;
+assign first_nine_sec_pulse = clk_sel ? one_Hz_clk_SP : 1'b0; 
+*/
 endmodule 
 
 
 
 
 
-
-/************Single Pulse*****************/
+/*
+//Single Pulse
 module AND(a, b, out);
 input a, b;
 output out;
@@ -119,3 +125,4 @@ DFF flip_flop(clk, sync_press, unused, q_bar);
 AND and_gate(sync_press, q_bar, SP);
 
 endmodule
+*/
